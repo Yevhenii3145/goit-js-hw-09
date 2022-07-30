@@ -27,34 +27,58 @@ function f(e) {
   // console.log(stepRef.value);
   // console.log(amountRef.value);\
   let delay = Number(delayRef.value);
+  // console.log(delay);
   const step = Number(stepRef.value);
-  const amount = amountRef.value;
-  for (let i = 1; i <= amount; i++) {
-    const position = i;
-    if (position === 1) {
-      setTimeout(() => {
-        createPromise(position, delay)
-          .then(result => {
-            Notify.success(result);
-          })
-          .catch(error => Notify.failure(error));
-      }, delay);
-      continue;
+  const amount = Number(amountRef.value);
+  let newDelay = delay + step;
+  let position = 1;
+  let counter = 1;
+  setTimeout(() => {
+    // console.log(delay);
+    createPromise(position, delay)
+      .then(result => {
+        Notify.success(result);
+      })
+      .catch(error => Notify.failure(error));
+    counter += 1;
+    position += 1;
+  }, delay);
+
+  const intId = setInterval(() => {
+    console.log(step);
+    if (counter > amount) {
+      clearInterval(intId);
+      return;
     }
 
-    setTimeout(() => {
-      createPromise(position, delay)
-        .then(result => {
-          Notify.success(result);
-        })
-        .catch(error => Notify.failure(error));
-    }, step);
-
-    // setTimeout(() => {
-
-    // })
-  }
+    createPromise(position, newDelay)
+      .then(result => {
+        Notify.success(result);
+      })
+      .catch(error => Notify.failure(error));
+    counter += 1;
+    position = position + 1;
+    newDelay = newDelay + step;
+    // position = i;
+  }, newDelay);
 }
+
+// let newDelay =
+
+//     setTimeout(() => {
+//       // if (counter === amount - 1) {
+//       //   return;
+//       // }
+//       createPromise(position, newDelay)
+//         .then(result => {
+//           Notify.success(result);
+//         })
+//         .catch(error => Notify.failure(error));
+//       counter = counter + 1;
+//       position = position + 1;
+//       newDelay = newDelay + step;
+//     }, newDelay);
+// }
 
 // function createPromise(position, delay) {
 //   const shouldResolve = Math.random() > 0.3;
