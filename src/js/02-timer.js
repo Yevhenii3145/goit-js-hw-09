@@ -36,6 +36,7 @@ function timerTick(e) {
     console.log(remainingTime);
     if (remainingTime === 0 || remainingTime < 0) {
       clearInterval(interIdn);
+      Notify.failure('Time is up');
       return;
     }
     console.log(remainingTime);
