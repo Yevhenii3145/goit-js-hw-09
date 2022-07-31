@@ -33,9 +33,9 @@ refs.formRef.addEventListener('submit', onSubmitForm);
 function onSubmitForm(e) {
   e.preventDefault();
   console.log('ggggggggggggg');
-  let delay = Number(delayRef.value);
-  const step = Number(stepRef.value);
-  const position = Number(amountRef.value);
+  let delay = Number(refs.delayRef.value);
+  const step = Number(refs.stepRef.value);
+  const position = Number(refs.amountRef.value);
 
   createPromise(position, delay)
     .then(result => {
