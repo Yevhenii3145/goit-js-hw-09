@@ -25,6 +25,10 @@ const refs = {
 };
 
 refs.formRef.addEventListener('submit', onSubmitForm);
+
+let delay = Number(refs.delayRef.value);
+const step = Number(refs.stepRef.value);
+let position = Number(refs.amountRef.value);
 // const formRef = document.querySelector('.form');
 // const delayRef = document.querySelector('[name="delay"]');
 // const stepRef = document.querySelector('[name="step"]');
@@ -33,9 +37,6 @@ refs.formRef.addEventListener('submit', onSubmitForm);
 function onSubmitForm(e) {
   e.preventDefault();
   console.log('ggggggggggggg');
-  let delay = Number(refs.delayRef.value);
-  const step = Number(refs.stepRef.value);
-  const position = Number(refs.amountRef.value);
 
   createPromise(position, delay)
     .then(result => {
