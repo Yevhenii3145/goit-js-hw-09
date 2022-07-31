@@ -30,7 +30,7 @@ function onSubmitForm(e) {
   let delay = Number(delayRef.value);
   const step = Number(stepRef.value);
   let position = Number(amountRef.value);
-  console.log('ggggggggggggg');
+  console.log('gggggggggggg');
 
   createPromise(position, delay, step)
     .then(result => {
