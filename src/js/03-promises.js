@@ -3,13 +3,17 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     const shouldResolve = Math.random() > 0.3;
-    setTimeout(() => {
-      if (shouldResolve) {
-        resolve(`✅ Fulfilled promise ${position} in ${delay}ms`);
-      } else {
-        reject(`❌ Rejected promise ${position} in ${delay}ms`);
-      }
-    }, delay);
+    for (let i = 1; i <= position; i++) {
+      position = i;
+      setTimeout(() => {
+        if (shouldResolve) {
+          resolve(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        } else {
+          reject(`❌ Rejected promise ${position} in ${delay}ms`);
+        }
+      }, delay);
+      delay = delay + step;
+    }
   });
 }
 
@@ -27,7 +31,7 @@ function f(e) {
   const step = Number(stepRef.value);
   const amount = Number(amountRef.value);
   let newDelay = delay + step;
-  let position = 1;
+  let position = 0;
   // let counter = 1;
 
   createPromise(position, delay)
@@ -36,19 +40,16 @@ function f(e) {
     })
     .catch(error => Notify.failure(error));
   // counter += 1;
-  position += 1;
 
-  for (let i = 2; i <= amount; i++) {
-    position = i;
-    createPromise(position, newDelay)
-      .then(result => {
-        Notify.success(result);
-      })
-      .catch(error => Notify.failure(error));
-
-    // position = position + 1;
-    newDelay = newDelay + step;
-  }
+  // for (let i = 2; i <= amount; i++) {
+  //   position = i;
+  //   createPromise(position, newDelay)
+  //     .then(result => {
+  //       Notify.success(result);
+  //     })
+  //     .catch(error => Notify.failure(error));
+  //   newDelay = newDelay + step;
+  // }
 }
 
 // let newDelay =
