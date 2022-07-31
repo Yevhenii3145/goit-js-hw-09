@@ -30,9 +30,13 @@ function timerTick(e) {
   startTimerRef.disabled = true;
   const targetTime = String(fp.selectedDates[0].getTime());
   console.log(targetTime);
-  setInterval(() => {
+  const interId = setInterval(() => {
     const now = Date.now();
     const remainingTime = targetTime - now;
+    if (remainingTime === 0) {
+      clearInterval(interId);
+      return;
+    }
     console.log(remainingTime);
 
     console.log(convertMs(remainingTime));
