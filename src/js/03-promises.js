@@ -28,33 +28,26 @@ function f(e) {
   const amount = Number(amountRef.value);
   let newDelay = delay + step;
   let position = 1;
-  let counter = 1;
-  // setTimeout(() => {
+  // let counter = 1;
+
   createPromise(position, delay)
     .then(result => {
       Notify.success(result);
     })
     .catch(error => Notify.failure(error));
-  counter += 1;
+  // counter += 1;
   position += 1;
-  // }, delay);
 
-  function intId() {
-    console.log(step);
-    for (let i = 1; i <= amount - 1; i++) {
-      //  if (counter >= amount) {
-      //   //  clearInterval(intId);
-      //    return;
-      //  }
-      createPromise(position, newDelay)
-        .then(result => {
-          Notify.success(result);
-        })
-        .catch(error => Notify.failure(error));
-      // counter += 1;
-      position = position + 1;
-      newDelay = newDelay + step;
-    }
+  for (let i = 2; i <= amount; i++) {
+    position = i;
+    createPromise(position, newDelay)
+      .then(result => {
+        Notify.success(result);
+      })
+      .catch(error => Notify.failure(error));
+
+    // position = position + 1;
+    newDelay = newDelay + step;
   }
 }
 
