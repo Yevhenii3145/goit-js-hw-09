@@ -33,6 +33,7 @@ function timerTick(e) {
   const interIdn = setInterval(() => {
     const now = Date.now();
     const remainingTime = targetTime - now;
+    console.log(remainingTime);
     if (remainingTime === 0 || remainingTime < 0) {
       clearInterval(interIdn);
       return;
