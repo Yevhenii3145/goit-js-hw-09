@@ -15,7 +15,7 @@ refs.formRef.addEventListener('submit', onSubmitForm);
 
 function onSubmitForm(e) {
   e.preventDefault();
-
+  console.log('ggggggggggggg');
   let delay = Number(delayRef.value);
   const step = Number(stepRef.value);
   const position = Number(amountRef.value);
