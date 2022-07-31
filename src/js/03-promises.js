@@ -39,22 +39,23 @@ function f(e) {
   position += 1;
   // }, delay);
 
-  const intId = setInterval(() => {
+  function intId() {
     console.log(step);
-    if (counter > amount) {
-      clearInterval(intId);
-      return;
+    for (let i = 1; i <= amount - 1; i++) {
+      //  if (counter >= amount) {
+      //   //  clearInterval(intId);
+      //    return;
+      //  }
+      createPromise(position, newDelay)
+        .then(result => {
+          Notify.success(result);
+        })
+        .catch(error => Notify.failure(error));
+      // counter += 1;
+      position = position + 1;
+      newDelay = newDelay + step;
     }
-
-    createPromise(position, newDelay)
-      .then(result => {
-        Notify.success(result);
-      })
-      .catch(error => Notify.failure(error));
-    counter += 1;
-    position = position + 1;
-    newDelay = newDelay + step;
-  }, newDelay);
+  }
 }
 
 // let newDelay =
