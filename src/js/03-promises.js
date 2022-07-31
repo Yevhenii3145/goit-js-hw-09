@@ -17,25 +17,19 @@ function createPromise(position, delay) {
   });
 }
 
-const refs = {
-  formRef: document.querySelector('.form'),
-  delayRef: document.querySelector('[name="delay"]'),
-  stepRef: document.querySelector('[name="step"]'),
-  amountRef: document.querySelector('[name="amount"]'),
-};
+const formRef = document.querySelector('.form');
+const delayRef = document.querySelector('[name="delay"]');
+const stepRef = document.querySelector('[name="step"]');
+const amountRef = document.querySelector('[name="amount"]');
 
-refs.formRef.addEventListener('submit', onSubmitForm);
-
-let delay = Number(refs.delayRef.value);
-const step = Number(refs.stepRef.value);
-let position = Number(refs.amountRef.value);
-// const formRef = document.querySelector('.form');
-// const delayRef = document.querySelector('[name="delay"]');
-// const stepRef = document.querySelector('[name="step"]');
-// const amountRef = document.querySelector('[name="amount"]');
+formRef.addEventListener('submit', onSubmitForm);
 
 function onSubmitForm(e) {
   e.preventDefault();
+
+  let delay = Number(delayRef.value);
+  const step = Number(stepRef.value);
+  let position = Number(amountRef.value);
   console.log('ggggggggggggg');
 
   createPromise(position, delay)
