@@ -1,5 +1,22 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+function createPromise(position, delay) {
+  return new Promise((resolve, reject) => {
+    const shouldResolve = Math.random() > 0.3;
+    for (let i = 1; i <= position; i++) {
+      position = i;
+      setTimeout(() => {
+        if (shouldResolve) {
+          resolve(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        } else {
+          reject(`❌ Rejected promise ${position} in ${delay}ms`);
+        }
+      }, delay);
+      delay = delay + step;
+    }
+  });
+}
+
 const refs = {
   formRef: document.querySelector('.form'),
   delayRef: document.querySelector('[name="delay"]'),
@@ -25,21 +42,4 @@ function onSubmitForm(e) {
       Notify.success(result);
     })
     .catch(error => Notify.failure(error));
-}
-
-function createPromise(position, delay) {
-  return new Promise((resolve, reject) => {
-    const shouldResolve = Math.random() > 0.3;
-    for (let i = 1; i <= position; i++) {
-      position = i;
-      setTimeout(() => {
-        if (shouldResolve) {
-          resolve(`✅ Fulfilled promise ${position} in ${delay}ms`);
-        } else {
-          reject(`❌ Rejected promise ${position} in ${delay}ms`);
-        }
-      }, delay);
-      delay = delay + step;
-    }
-  });
 }
