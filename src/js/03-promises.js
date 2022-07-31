@@ -1,6 +1,6 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-function createPromise(position, delay) {
+function createPromise(position, delay, step) {
   return new Promise((resolve, reject) => {
     const shouldResolve = Math.random() > 0.3;
     for (let i = 1; i <= position; i++) {
@@ -32,7 +32,7 @@ function onSubmitForm(e) {
   let position = Number(amountRef.value);
   console.log('ggggggggggggg');
 
-  createPromise(position, delay)
+  createPromise(position, delay, step)
     .then(result => {
       Notify.success(result);
     })
